@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         musicStart=false;
         backetAnime.start();
         backetAnime.pause();
+        seekBar.setProgress(0);
+        nowTime.setText("00:00");
         musicService.MusicStop();
         handler.removeCallbacks(runnable);
     }
@@ -165,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void onProgressChanged(SeekBar seekBar,int progress,boolean fromUser){
             if(fromUser==true){
                 musicService.mp.seekTo(progress);
+                nowTime.setText(time.format(musicService.mp.getCurrentPosition()));
             }
         }
         @Override
